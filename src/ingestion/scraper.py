@@ -63,13 +63,21 @@ def fetch_nepse_data():
 # It calls the function to fetch the data, and if the data is successfully fetched 
 # runs only if the script is explicitly executed (not imported as a module in another script).
 if __name__ == "__main__":
+    # this import is used to import the functions that we have defined in db.py, 
+    # which is responsible for handling all database interactions, including creating tables and saving data to PostgreSQL.
+    from db import save_to_postgres, create_table
+
     df = fetch_nepse_data()
     if df is not None:
-        print(df.head(10))
+        print(df.head())
         print(f"\nShape: {df.shape}")
         print(f"\nColumns: {df.columns.tolist()}")
 
-        #saving todays nepse data to a csv file
+        # save to CSV as backup
         filename = f"data/raw/nepse_{date.today()}.csv"
         df.to_csv(filename, index=False)
         print(f"\nData saved to {filename}")
+
+        # save to PostgreSQL
+        create_table()
+        save_to_postgres(df)

@@ -1,0 +1,26 @@
+# Docker Compose file for PostgreSQL database
+# serivces are defined here, in this case we have only one service which is postgres
+# other sercives can be added here such as airflow, redis, etc. as needed
+services:
+  #this is only the name of the service, it can be anything 
+  #but it is good practice to name it after the image being used
+  postgres:
+    # this is the image we want to use for our postgres service, 
+    #in this case we are using the official postgres image from docker hub
+    image: postgres:15
+
+    container_name: nepse_db
+    #need to macth the environment variables with the ones used in the code, otherwise it will not work
+    environment:
+      POSTGRES_USER: nepse_user
+      POSTGRES_PASSWORD: nepse_pass
+      POSTGRES_DB: nepse
+    # this is the port mapping, it maps the port of the host machine to the port of the container
+    ports:
+      - "5432:5432"
+    # when docker container is stopped, the data will be lost, to persist the data we need to use volumes
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
