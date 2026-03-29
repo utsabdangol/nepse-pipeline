@@ -22,8 +22,8 @@ uv pip install -r requirements.txt
 ```
 
 ## Project Status
-- [ ] Ingestion — NEPSE scraper
-- [ ] Storage — PostgreSQL schema
+- [x] Ingestion — NEPSE scraper
+- [x] Storage — PostgreSQL schema
 - [ ] Transformation — dbt models
 - [ ] ML model
 - [ ] API serving
