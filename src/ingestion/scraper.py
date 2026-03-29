@@ -62,22 +62,36 @@ def fetch_nepse_data():
 # This block of code is used to test the function fetch_nepse_data() when the script is run directly.
 # It calls the function to fetch the data, and if the data is successfully fetched 
 # runs only if the script is explicitly executed (not imported as a module in another script).
+
 if __name__ == "__main__":
-    # this import is used to import the functions that we have defined in db.py, 
+        # this import is used to import the functions that we have defined in db.py, 
     # which is responsible for handling all database interactions, including creating tables and saving data to PostgreSQL.
-    from db import save_to_postgres, create_table
+    import sys
+    import os
+    sys.path.append(os.path.dirname(__file__))
+    from db import create_table, save_to_postgres
 
+    print("Starting NEPSE pipeline...")
+    
+    # step 1 — scrape
+    print("\n[1/3] Scraping NEPSE data...")
     df = fetch_nepse_data()
-    if df is not None:
-        print(df.head())
-        print(f"\nShape: {df.shape}")
-        print(f"\nColumns: {df.columns.tolist()}")
+    
+    if df is None:
+        print("Scraping failed. Exiting.")
+        exit(1)
+    
+    print(f"Scraped {len(df)} rows successfully")
 
-        # save to CSV as backup
-        filename = f"data/raw/nepse_{date.today()}.csv"
-        df.to_csv(filename, index=False)
-        print(f"\nData saved to {filename}")
+    # step 2 — save raw CSV backup
+    print("\n[2/3] Saving raw CSV backup...")
+    filename = f"data/raw/nepse_{date.today()}.csv"
+    df.to_csv(filename, index=False)
+    print(f"Saved to {filename}")
 
-        # save to PostgreSQL
-        create_table()
-        save_to_postgres(df)
+    # step 3 — save to postgresql
+    print("\n[3/3] Saving to PostgreSQL...")
+    create_table()
+    save_to_postgres(df)
+
+    print("\nPipeline complete.")
