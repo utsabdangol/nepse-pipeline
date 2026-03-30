@@ -32,7 +32,19 @@ services:
       - "5050:80"
     depends_on:
       - postgres
-      
+  
+  dbt:
+    image: fishtownanalytics/dbt:1.0.0
+    container_name: nepse_dbt
+    volumes:
+      - ./dbt:/usr/app/dbt
+    working_dir: /usr/app/dbt
+    environment:
+      DBT_PROFILES_DIR: /usr/app/dbt
+    depends_on:
+      - postgres
+    entrypoint: ["tail", "-f", "/dev/null"]
+
 volumes:
   postgres_data:
 

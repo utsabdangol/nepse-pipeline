@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: public
+    database: nepse
+    schema: public
+    tables:
+      - name: nepse_prices
+        description: "Raw NEPSE daily share prices scraped from sharesansar.com"

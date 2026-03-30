@@ -1,0 +1,12 @@
+nepse:
+  outputs:
+    dev:
+      type: postgres
+      threads: 4
+      host: postgres
+      port: 5432
+      user: nepse_user
+      pass: nepse_pass
+      dbname: nepse
+      schema: public
+  target: dev
