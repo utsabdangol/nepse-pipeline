@@ -41,6 +41,8 @@ services:
     working_dir: /usr/app/dbt
     environment:
       DBT_PROFILES_DIR: /usr/app/dbt
+    ports:
+      - "8080:8080"
     depends_on:
       - postgres
     entrypoint: ["tail", "-f", "/dev/null"]

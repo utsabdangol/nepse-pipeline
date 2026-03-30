@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: silver_nepse_prices
+    description: "Cleaned and typed NEPSE daily prices with calculated columns"
+    columns:
+      - name: symbol
+        description: "Stock ticker symbol"
+        tests:
+          - not_null
+      - name: ltp
+        description: "Last traded price"
+        tests:
+          - not_null
+      - name: scraped_date
+        description: "Date the data was scraped"
+        tests:
+          - not_null
+      - name: change_pct
+        description: "Daily percentage change"
+
+  - name: gold_nepse_features
+    description: "Analytical features for ML model training"
+    columns:
+      - name: symbol
+        tests:
+          - not_null
+      - name: avg_7_day
+        description: "7-day rolling average of LTP"
+        tests:
+          - not_null
+      - name: avg_30_day
+        description: "30-day rolling average of LTP"
+        tests:
+          - not_null
