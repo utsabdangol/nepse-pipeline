@@ -1,6 +1,29 @@
 # Docker Compose file for PostgreSQL database
 # serivces are defined here, in this case we have only one service which is postgres
 # other sercives can be added here such as airflow, redis, etc. as needed
+
+
+x-airflow-common:
+  &airflow-common
+  image: apache/airflow:2.7.0
+  env_file:
+    - .env
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://nepse_user:nepse_pass@postgres/nepse
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./src:/opt/airflow/src
+    - ./dbt:/opt/airflow/dbt
+    - /var/run/docker.sock:/var/run/docker.sock
+  depends_on:
+    - postgres
+
 services:
   #this is only the name of the service, it can be anything 
   #but it is good practice to name it after the image being used
@@ -47,7 +70,38 @@ services:
       - postgres
     entrypoint: ["tail", "-f", "/dev/null"]
 
+  airflow-init:
+    <<: *airflow-common
+    container_name: nepse_airflow_init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        pip install docker &&
+        airflow db init &&
+        airflow users create \
+          --username admin \
+          --firstname admin \
+          --lastname admin \
+          --role Admin \
+          --email admin@nepse.com \
+          --password admin123
+    restart: "no"
+
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: nepse_airflow_webserver
+    command: webserver
+    ports:
+      - "8081:8080"
+    restart: always
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: nepse_airflow_scheduler
+    command: scheduler
+    restart: always
+
 volumes:
   postgres_data:
-
-
+  

@@ -8,7 +8,8 @@ from psycopg2.extras import execute_values
 import pandas as pd
 # dotenv is a library that allows us to load environment variables from a .env file,
 # which is a common practice for managing sensitive information like database credentials.
-from dotenv import load_dotenv
+# must come before os to ensure environment variables are loaded before we try to access them.
+from dotenv import load_dotenv 
 # os is a built-in library that provides a way to interact with the operating system,
 # in this case, we use it to access environment variables that we loaded with dotenv.
 import os
@@ -18,13 +19,18 @@ load_dotenv()
 
 # connectionn to the postgres database
 def get_connection():
-    # reads credentials from .env file, never hardcoded
+    load_dotenv()
+    
+    # use 'postgres' as host when running inside Docker
+    # use 'localhost' when running locally
+    host = os.getenv("DB_HOST", "localhost")
+    
     conn = psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        port=os.getenv("DB_PORT"),
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD")
+        host=host,
+        port=os.getenv("DB_PORT", "5432"),
+        dbname=os.getenv("DB_NAME", "nepse"),
+        user=os.getenv("DB_USER", "nepse_user"),
+        password=os.getenv("DB_PASSWORD", "nepse_pass")
     )
     return conn
 
@@ -65,9 +71,15 @@ def save_to_postgres(df: pd.DataFrame):
     ]].copy()
 
     # remove commas from numeric columns so postgres can parse them
+    # padas see 1,000 as a string, we need to remove the comma to convert it to numeric type that postgres can understand.
     numeric_cols = ["Open", "High", "Low", "Close", "LTP"]
     for col in numeric_cols:
+        # here the important part is the regex=false
+        # regex is a library for working with regular expressions, 
+        # which are a powerful tool for pattern matching and text manipulation.
+        # in this case, we are using the str.replace() method to remove commas from the numeric columns.
         df_clean[col] = df_clean[col].astype(str).str.replace(",", "", regex=False)
+        # coerce makes sure the conversion is successful, replacing any invalid values with NaN
         df_clean[col] = pd.to_numeric(df_clean[col], errors="coerce")
 
     # replace empty strings with None
