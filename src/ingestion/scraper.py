@@ -53,9 +53,26 @@ def fetch_nepse_data():
         if cells:
             rows.append(cells)
 
+    def get_trading_date(soup):
+        date_text = soup.find("span", {"class": "text-org"})
+        
+        if date_text is None:
+            raise ValueError("Could not find trading date on page — sharesansar may have changed their HTML structure")
+        
+        date_str = date_text.text.strip()
+        
+        if not date_str:
+            raise ValueError(f"Trading date element found but text is empty")
+        
+        try:
+            from datetime import datetime
+            return datetime.strptime(date_str, "%Y-%m-%d").date()
+        except ValueError as e:
+            raise ValueError(f"Could not parse date '{date_str}' — expected format YYYY-MM-DD. Error: {e}")
+
     #create a pandas DataFrame using the extracted data, with the columns defined by the headers we extracted earlier.
     df = pd.DataFrame(rows, columns=columns)
-    df["scraped_date"] = date.today()
+    df["scraped_date"] = get_trading_date(soup)
     df = df.drop_duplicates()
     return df
 

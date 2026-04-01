@@ -59,7 +59,9 @@ with DAG(
     description='Daily NEPSE data pipeline',
     # schedule_interval defines when the DAG should run.
     # 0= minute, 11=hour, * = every day, * = everymonth, 1-5 = Monday to Friday
-    schedule_interval='0 11 * * 1-5',
+    # Nepal is UTC+5:45, so 4pm Nepal = 10:15am UTC from sunday to thursday
+
+    schedule_interval='15 12 * * 0,1,2,3,4',
     start_date=datetime(2026, 3, 31),
     # is catchup were to be true it would try to run all the missed runs from start-date to today
     catchup=False,
