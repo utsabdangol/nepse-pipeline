@@ -29,6 +29,7 @@ def run_scraper():
     # these imports are inside the function to avoid issues with Airflow's 
     # DAG parsing and to ensure they are only imported when the task runs
     from ingestion.scraper import fetch_nepse_data
+    from ingestion.scraper import trading_date
     from ingestion.db import create_table, save_to_postgres
     from datetime import date
 
@@ -41,7 +42,7 @@ def run_scraper():
     if df is None:
         raise ValueError("Scraper returned no data")
 
-    filename = f"/opt/airflow/src/data/raw/nepse_{date.today()}.csv"
+    filename = f"/opt/airflow/src/data/raw/nepse_{trading_date}.csv"
     #makes sure the directory exists before trying to save the file
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     df.to_csv(filename, index=False)
