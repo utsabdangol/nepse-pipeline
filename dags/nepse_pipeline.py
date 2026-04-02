@@ -18,7 +18,7 @@ default_args = {
     # how many times to retry if the task fails
     'retries': 1,
     # interval between retries
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(seconds=30),
     # if a task fails, do not send email notifications
     # in actual production, you might want to set this to True and configure email settings
     'email_on_failure': False,
@@ -29,7 +29,7 @@ def run_scraper():
     # these imports are inside the function to avoid issues with Airflow's 
     # DAG parsing and to ensure they are only imported when the task runs
     from ingestion.scraper import fetch_nepse_data
-    from ingestion.scraper import trading_date
+
     from ingestion.db import create_table, save_to_postgres
     from datetime import date
 
@@ -41,7 +41,10 @@ def run_scraper():
 
     if df is None:
         raise ValueError("Scraper returned no data")
+    if "scraped_date" not in df.columns or df["scraped_date"].isnull().all():
+        raise ValueError("Missing trading date in scraped data")
 
+    trading_date = df["scraped_date"].iloc[0]
     filename = f"/opt/airflow/src/data/raw/nepse_{trading_date}.csv"
     #makes sure the directory exists before trying to save the file
     os.makedirs(os.path.dirname(filename), exist_ok=True)
