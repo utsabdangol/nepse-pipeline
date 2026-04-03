@@ -1,3 +1,5 @@
+# this file is for backfilling historical data by scraping sharesansar.com
+# it does not work at the moment
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -22,39 +24,38 @@ HEADERS = {
 
 def get_csrf_token():
     session = requests.Session()
+    
     response = session.get(
         f"{BASE_URL}/today-share-price",
         headers=HEADERS,
         timeout=30
     )
+    
     soup = BeautifulSoup(response.text, "html.parser")
-
-    # get token from meta tag
     token = soup.find("meta", {"name": "_token"})
     if token is None:
         raise ValueError("Could not find CSRF token")
-
-    # get XSRF-TOKEN from cookies
-    xsrf_token = session.cookies.get("XSRF-TOKEN")
-    print(f"Meta token: {token['content'][:20]}...")
-    print(f"XSRF cookie: {xsrf_token[:20] if xsrf_token else 'NOT FOUND'}...")
-
+    
+    # verify session cookies were set
+    print(f"Session cookie: {session.cookies.get('sharesansar_session', 'NOT FOUND')[:20]}...")
+    print(f"XSRF cookie: {session.cookies.get('XSRF-TOKEN', 'NOT FOUND')[:20]}...")
+    
     return session, token["content"]
 
 
 def fetch_data_for_date(session, token, trading_date):
     date_str = trading_date.strftime("%Y-%m-%d")
-
-    # decode the XSRF cookie — Laravel URL-encodes it
-    xsrf_token = session.cookies.get("XSRF-TOKEN", "")
-    xsrf_token = unquote(xsrf_token)
-
     headers = {
-        **HEADERS,
-        "X-XSRF-TOKEN": xsrf_token,
-        "X-Requested-With": "XMLHttpRequest",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0",
+        "Accept": "*/*",
+        "Accept-Language": "en-US,en;q=0.9",
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
         "Origin": BASE_URL,
+        "Referer": f"{BASE_URL}/today-share-price",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
     }
 
     payload = {
@@ -183,28 +184,12 @@ def backfill(start_date, end_date):
 #     start = date(2025, 10, 1)    # 6 months back
 
 #     backfill(start, end)
-
 if __name__ == "__main__":
     session, token = get_csrf_token()
-    
-    # test dates going forward to find where data starts
     from datetime import date
-    test_dates = [
-        date(2026, 1, 1),
-        date(2026, 1, 5),
-        date(2026, 1, 12),
-        date(2026, 1, 19),
-        date(2026, 2, 1),
-        date(2026, 2, 15),
-        date(2026, 3, 1),
-    ]
-    
-    if __name__ == "__main__":
-        session, token = get_csrf_token()
-        from datetime import date
-        df = fetch_data_for_date(session, token, date(2026, 3, 26))
-        if df is not None:
-            print(f"SUCCESS: {len(df)} rows")
-            print(df.head())
-        else:
-            print("FAILED")
+    df = fetch_data_for_date(session, token, date(2026, 3, 26))
+    if df is not None:
+        print(f"SUCCESS: {len(df)} rows")
+        print(df.head())
+    else:
+        print("FAILED")

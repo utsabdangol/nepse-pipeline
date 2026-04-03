@@ -21,10 +21,14 @@ uv venv .venv
 uv pip install -r requirements.txt
 ```
 
+## Data Sources
+- Daily scraping: sharesansar.com
+- Historical backfill (2024-2025): github.com/omitnomis/ShareSansarScraper
+
 ## Project Status
 - [x] Ingestion — NEPSE scraper
 - [x] Storage — PostgreSQL schema
-- [ ] Transformation — dbt models
+- [x] Transformation — dbt models
 - [ ] ML model
 - [ ] API serving
 - [ ] Monitoring
