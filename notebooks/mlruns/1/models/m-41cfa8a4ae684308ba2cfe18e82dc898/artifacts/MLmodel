@@ -1,0 +1,23 @@
+artifact_path: file:C:/study/nepse-pipeline/notebooks/mlruns/1/models/m-41cfa8a4ae684308ba2cfe18e82dc898/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-41cfa8a4ae684308ba2cfe18e82dc898
+model_size_bytes: 7392806
+model_uuid: m-41cfa8a4ae684308ba2cfe18e82dc898
+prompts: null
+run_id: 8e208d6b3a1c429b8c60e74bf4d261a0
+utc_time_created: '2026-04-06 07:41:44.930328'
