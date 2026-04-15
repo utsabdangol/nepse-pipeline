@@ -1,0 +1,272 @@
+symbol,sector
+ADBL,Commercial Banks
+CZBIL,Commercial Banks
+EBL,Commercial Banks
+GBIME,Commercial Banks
+HBL,Commercial Banks
+KBL,Commercial Banks
+MBL,Commercial Banks
+NABIL,Commercial Banks
+NBL,Commercial Banks
+NICA,Commercial Banks
+NMB,Commercial Banks
+PCBL,Commercial Banks
+SANIMA,Commercial Banks
+SBI,Commercial Banks
+SBL,Commercial Banks
+SCB,Commercial Banks
+PRVU,Commercial Banks
+NIMB,Commercial Banks
+LSL,Commercial Banks
+CORBL,Development Bank Limited
+EDBL,Development Bank Limited
+GBBL,Development Bank Limited
+JBBL,Development Bank Limited
+MDB,Development Bank Limited
+MNBBL,Development Bank Limited
+NABBC,Development Bank Limited
+SADBL,Development Bank Limited
+SHINE,Development Bank Limited
+SINDU,Development Bank Limited
+GRDBL,Development Bank Limited
+SABBL,Development Bank Limited
+MLBL,Development Bank Limited
+LBBL,Development Bank Limited
+KSBBL,Development Bank Limited
+SAPDBL,Development Bank Limited
+CFCL,Finance
+GFCL,Finance
+GMFIL,Finance
+ICFC,Finance
+JFL,Finance
+MFIL,Finance
+MPFL,Finance
+NFS,Finance
+PFL,Finance
+PROFL,Finance
+SIFC,Finance
+RLFL,Finance
+GUFL,Finance
+BFC,Finance
+SFCL,Finance
+OHL,Hotels And Tourism
+SHL,Hotels And Tourism
+TRH,Hotels And Tourism
+CGH,Hotels And Tourism
+KDL,Hotels And Tourism
+CITY,Hotels And Tourism
+BANDIPUR,Hotels And Tourism
+HFIN,Hotels And Tourism
+AHPC,Hydro Power
+BPCL,Hydro Power
+CHCL,Hydro Power
+NHPC,Hydro Power
+SHPC,Hydro Power
+HURJA,Hydro Power
+AKPL,Hydro Power
+BARUN,Hydro Power
+API,Hydro Power
+NGPL,Hydro Power
+MHL,Hydro Power
+NYADI,Hydro Power
+SJCL,Hydro Power
+RHPL,Hydro Power
+UMHL,Hydro Power
+DORDI,Hydro Power
+PHCL,Hydro Power
+PPL,Hydro Power
+UPCL,Hydro Power
+SPL,Hydro Power
+SPDL,Hydro Power
+MKJC,Hydro Power
+SAHAS,Hydro Power
+KKHC,Hydro Power
+HPPL,Hydro Power
+DHPL,Hydro Power
+BHPL,Hydro Power
+MHNL,Hydro Power
+CHL,Hydro Power
+USHL,Hydro Power
+SPHL,Hydro Power
+NHDL,Hydro Power
+RADHI,Hydro Power
+BNHC,Hydro Power
+RHGCL,Hydro Power
+KPCL,Hydro Power
+TAMOR,Hydro Power
+GHL,Hydro Power
+EHPL,Hydro Power
+MKHC,Hydro Power
+BEDC,Hydro Power
+PMHPL,Hydro Power
+KBSH,Hydro Power
+MBJC,Hydro Power
+GLH,Hydro Power
+USHEC,Hydro Power
+AKJCL,Hydro Power
+LEC,Hydro Power
+TPC,Hydro Power
+SHEL,Hydro Power
+PPCL,Hydro Power
+TSHL,Hydro Power
+SSHL,Hydro Power
+JOSHI,Hydro Power
+UPPER,Hydro Power
+TVCL,Hydro Power
+UNHPL,Hydro Power
+SPC,Hydro Power
+SGHC,Hydro Power
+AHL,Hydro Power
+BHDC,Hydro Power
+HDHPC,Hydro Power
+MHCL,Hydro Power
+SMH,Hydro Power
+RFPL,Hydro Power
+MEN,Hydro Power
+UHEWA,Hydro Power
+HHL,Hydro Power
+UMRH,Hydro Power
+SIKLES,Hydro Power
+MEL,Hydro Power
+RURU,Hydro Power
+MAKAR,Hydro Power
+DHEL,Hydro Power
+SMJC,Hydro Power
+MKHL,Hydro Power
+CKHL,Hydro Power
+MMKJL,Hydro Power
+DOLTI,Hydro Power
+BHL,Hydro Power
+GVL,Hydro Power
+MSHL,Hydro Power
+BUNGAL,Hydro Power
+RIDI,Hydro Power
+HIMSTAR,Hydro Power
+MEHL,Hydro Power
+IHL,Hydro Power
+SMHL,Hydro Power
+MCHL,Hydro Power
+BHCL,Hydro Power
+SANVI,Hydro Power
+RAWA,Hydro Power
+ULHC,Hydro Power
+BGWT,Hydro Power
+MANDU,Hydro Power
+MABEL,Hydro Power
+SIPD,Hydro Power
+VLUCL,Hydro Power
+SKHL,Hydro Power
+BJHL,Hydro Power
+SKHEL,Hydro Power
+RLEL,Hydro Power
+SOHL,Hydro Power
+CIT,Investment
+HATHY,Investment
+HIDCL,Investment
+NIFRA,Investment
+ENL,Investment
+NRN,Investment
+CHDC,Investment
+ALICL,Life Insurance
+LICN,Life Insurance
+NLIC,Life Insurance
+NLICL,Life Insurance
+CLI,Life Insurance
+RNLI,Life Insurance
+ILI,Life Insurance
+SNLI,Life Insurance
+SJLIC,Life Insurance
+SRLI,Life Insurance
+HLI,Life Insurance
+PMLI,Life Insurance
+GMLI,Life Insurance
+CREST,Life Insurance
+BNL,Manufacturing And Processing
+BNT,Manufacturing And Processing
+HDL,Manufacturing And Processing
+NLO,Manufacturing And Processing
+UNL,Manufacturing And Processing
+SHIVM,Manufacturing And Processing
+SARBTM,Manufacturing And Processing
+RSML,Manufacturing And Processing
+SONA,Manufacturing And Processing
+OMPL,Manufacturing And Processing
+GCIL,Manufacturing And Processing
+SAGAR,Manufacturing And Processing
+SAIL,Manufacturing And Processing
+SYPNL,Manufacturing And Processing
+CBBL,Microfinance
+DDBL,Microfinance
+FMDBL,Microfinance
+KMCDB,Microfinance
+NUBL,Microfinance
+SKBBL,Microfinance
+SLBBL,Microfinance
+SWBBL,Microfinance
+MLBBL,Microfinance
+LLBS,Microfinance
+JSLBB,Microfinance
+VLBS,Microfinance
+RSDC,Microfinance
+NMBMF,Microfinance
+MERO,Microfinance
+NADEP,Microfinance
+ALBSL,Microfinance
+NMFBS,Microfinance
+GMFBS,Microfinance
+HLBSL,Microfinance
+ILBS,Microfinance
+FOWAD,Microfinance
+SMATA,Microfinance
+MSLB,Microfinance
+GILB,Microfinance
+SMB,Microfinance
+GBLBS,Microfinance
+NESDO,Microfinance
+MLBSL,Microfinance
+GLBSL,Microfinance
+NICLBSL,Microfinance
+SLBSL,Microfinance
+UNLB,Microfinance
+SWASTIK,Microfinance
+JBLB,Microfinance
+SHLB,Microfinance
+ULBSL,Microfinance
+SMFBS,Microfinance
+WNLB,Microfinance
+SAMAJ,Microfinance
+DLBS,Microfinance
+ANLB,Microfinance
+MLBS,Microfinance
+AVYAN,Microfinance
+ACLBSL,Microfinance
+USLB,Microfinance
+CYCL,Microfinance
+SWMF,Microfinance
+NMLBBL,Microfinance
+MATRI,Microfinance
+SMPDA,Microfinance
+NICL,Non-Life Insurance
+NIL,Non-Life Insurance
+NLG,Non-Life Insurance
+SICL,Non-Life Insurance
+PRIN,Non-Life Insurance
+RBCL,Non-Life Insurance
+IGI,Non-Life Insurance
+HEI,Non-Life Insurance
+SGIC,Non-Life Insurance
+SPIL,Non-Life Insurance
+SALICO,Non-Life Insurance
+UAIL,Non-Life Insurance
+NMIC,Non-Life Insurance
+NTC,Others
+NRIC,Others
+HRL,Others
+MKCL,Others
+TTL,Others
+JHAPA,Others
+NRM,Others
+PURE,Others
+NWCL,Others
+BBC,Tradings
+STC,Tradings
