@@ -133,16 +133,11 @@ def predict(request: PredictionRequest):
     }
 
     # make prediction
-    X = [[
-        feature_values["price_vs_7day"],
-        feature_values["trend_strength"],
-        feature_values["price_position"],
-        feature_values["roc_10"],
-        feature_values["volatility_7"]
-    ]]
+    X_df = pd.DataFrame([feature_values])
+    X_df = X_df[features]
 
-    prediction = model.predict(X)[0]
-    probabilities = model.predict_proba(X)[0]
+    prediction = model.predict(X_df)[0]
+    probabilities = model.predict_proba(X_df)[0]
 
     return PredictionResponse(
         symbol=symbol,
